@@ -18,7 +18,7 @@ interface Props {
 
 const Toolbar = ({ editorRef }: Props) => {
   const imageRef = useRef<HTMLInputElement>(null);
-  const actions: { [key: string]: (...args: any[]) => void } = {
+  const actions = {
     heading: (headingCount: number) => {
       editorRef.current?.focus();
 
