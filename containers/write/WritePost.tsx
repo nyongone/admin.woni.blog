@@ -52,7 +52,7 @@ const WritePost = ({ categories, action = "write", initialPost }: Props) => {
             type="text"
             className="h-8 w-full text-3xl font-semibold text-zinc-700 outline-none"
             placeholder="제목을 입력하세요."
-            value={initialPost?.title ?? undefined}
+            defaultValue={initialPost?.title ?? undefined}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setTitle(e.target.value)
             }
