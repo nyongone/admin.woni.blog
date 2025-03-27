@@ -52,7 +52,11 @@ export async function updatePost(
 
   async function isSlugExists(slug: string) {
     const response = async () =>
-      (await client).from("posts").select("*").eq("slug", slug);
+      (await client)
+        .from("posts")
+        .select("*")
+        .eq("slug", slug)
+        .neq("id", parseInt(postId, 10));
     const { data } = await response();
 
     if (!data) return false;
