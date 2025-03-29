@@ -92,6 +92,9 @@ export default {
             borderLeft: "5px solid var(--color-blue-400)",
             backgroundColor: "var(--color-blue-50)",
           },
+          iframe: {
+            maxWidth: "100%",
+          },
         },
       },
     },
