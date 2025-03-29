@@ -37,7 +37,9 @@ const PostList = ({ posts }: Props) => {
           {posts.map((post) => (
             <tr className="border-b border-b-zinc-100" key={post.id}>
               <th scope="row" className="px-6 py-4 font-medium">
-                {post.title}
+                <Link href={`https://woni.blog/posts/${post.slug}`}>
+                  {post.title}
+                </Link>
               </th>
               <td className="px-6 py-4">
                 {dayjs(post.created_at).format("YYYY. MM. DD")}
