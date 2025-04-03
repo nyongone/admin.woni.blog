@@ -60,7 +60,9 @@ const WritePost = ({ categories, action = "write", initialPost }: Props) => {
         </div>
         <MarkdownEditor
           name="content"
-          onMarkdownChange={(markdown) => setMarkdown(markdown)}
+          onMarkdownChange={(markdown) =>
+            setMarkdown(markdown.replace(/\n/gi, "\n &nbsp;"))
+          }
           onReady={() => setInitialized(true)}
           initialValue={initialPost?.content ?? undefined}
         />
