@@ -31,6 +31,8 @@ export default {
             fontWeight: "normal",
             lineHeight: "1.75",
             wordBreak: "break-all",
+            marginBlockStart: "1rem",
+            marginBlockEnd: "1rem",
           },
           ul: {
             fontSize: "1rem",

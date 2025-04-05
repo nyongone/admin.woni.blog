@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { EditorView, minimalSetup } from "codemirror";
 import { placeholder } from "@codemirror/view";
-import { markdown } from "@codemirror/lang-markdown";
+import { commonmarkLanguage, markdown } from "@codemirror/lang-markdown";
 import Toolbar from "@/components/editor/Toolbar";
 import { codemirrorTheme } from "@/utils/codemirror-theme";
 
@@ -35,7 +35,9 @@ const MarkdownEditor = ({
         codemirrorTheme,
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
-          if (update.docChanged) onMarkdownChange(update.state.doc.toString());
+          if (update.docChanged) {
+            onMarkdownChange(update.state.doc.toString());
+          }
         }),
       ],
     });
