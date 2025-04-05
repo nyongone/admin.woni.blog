@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { EditorView, minimalSetup } from "codemirror";
 import { placeholder } from "@codemirror/view";
-import { commonmarkLanguage, markdown } from "@codemirror/lang-markdown";
+import { markdown } from "@codemirror/lang-markdown";
 import Toolbar from "@/components/editor/Toolbar";
 import { codemirrorTheme } from "@/utils/codemirror-theme";
 
