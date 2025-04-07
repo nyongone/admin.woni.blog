@@ -27,8 +27,6 @@ export async function writePostAction(
 
   const response = await createPost(payload);
 
-  console.log(response);
-
   if (response.status !== 201) return { ok: false };
 
   return { ok: true };

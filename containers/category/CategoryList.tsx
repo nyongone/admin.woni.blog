@@ -1,20 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Tables } from "@/types/database";
-import dayjs from "dayjs";
 import Link from "next/link";
-import DeletePostModal from "@/containers/modal/DeletePostModal";
+import DeleteCategoryModal from "@/containers/modal/DeleteCategoryModal";
+import CreateCategoryModal from "@/containers/modal/CreateCategoryModal";
 
 interface Props {
-  posts: Tables<"posts">[];
+  categories: CategoryType[];
 }
 
-const PostList = ({ posts }: Props) => {
-  const [modal, setModal] = useState<{
+const CategoryList = ({ categories }: Props) => {
+  const [deleteModal, setDeleteModal] = useState<{
     visible: boolean;
-    postId?: number;
+    categoryId?: number;
   } | null>(null);
+  const [createModal, setCreateModal] = useState<{ visible: boolean } | null>(
+    null,
+  );
 
   return (
     <div className="flex w-full flex-col items-start justify-start gap-4">
@@ -22,10 +24,10 @@ const PostList = ({ posts }: Props) => {
         <thead className="bg-zinc-100 text-sm">
           <tr>
             <th scope="col" className="px-6 py-3 font-normal">
-              게시글 제목
+              카테고리 이름
             </th>
             <th scope="col" className="px-6 py-3 font-normal">
-              작성일
+              카테고리 약어
             </th>
             <th scope="col" className="px-6 py-3 font-normal">
               관리
@@ -33,27 +35,19 @@ const PostList = ({ posts }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {posts.map((post) => (
-            <tr className="border-b border-b-zinc-100" key={post.id}>
+          {categories.map((category) => (
+            <tr className="border-b border-b-zinc-100" key={category.id}>
               <th scope="row" className="px-6 py-4 font-medium">
-                <Link href={`https://woni.blog/posts/${post.slug}`}>
-                  {post.title}
-                </Link>
+                {category.name}
               </th>
-              <td className="px-6 py-4">
-                {dayjs(post.created_at).format("YYYY. MM. DD")}
-              </td>
+              <td className="px-6 py-4">{category.slug}</td>
               <td className="px-6 py-4">
                 <div className="flex flex-row items-start justify-start gap-4">
-                  <Link
-                    className="cursor-pointer text-zinc-400 hover:text-zinc-700"
-                    href={`/write?postId=${post.id}`}
-                  >
-                    수정
-                  </Link>
                   <button
                     className="cursor-pointer text-zinc-400 hover:text-red-500"
-                    onClick={() => setModal({ visible: true, postId: post.id })}
+                    onClick={() =>
+                      setDeleteModal({ visible: true, categoryId: category.id })
+                    }
                   >
                     삭제
                   </button>
@@ -63,20 +57,25 @@ const PostList = ({ posts }: Props) => {
           ))}
         </tbody>
       </table>
-      {modal?.visible && modal?.postId && (
-        <DeletePostModal
-          postId={modal?.postId}
-          onClose={() => setModal({ visible: false })}
+      {deleteModal?.visible && deleteModal?.categoryId && (
+        <DeleteCategoryModal
+          categoryId={deleteModal?.categoryId}
+          onClose={() => setDeleteModal({ visible: false })}
         />
       )}
-      <Link
-        href="/write"
+      {createModal?.visible && (
+        <CreateCategoryModal
+          onClose={() => setCreateModal({ visible: false })}
+        />
+      )}
+      <button
+        onClick={() => setCreateModal({ visible: true })}
         className="flex h-12 w-full items-center justify-center bg-blue-400 text-white"
       >
-        게시글 작성
-      </Link>
+        카테고리 추가
+      </button>
     </div>
   );
 };
 
-export default PostList;
+export default CategoryList;

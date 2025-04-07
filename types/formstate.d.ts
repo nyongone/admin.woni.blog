@@ -18,3 +18,10 @@ interface PostFormState extends GeneralFormState {
     content?: string;
   };
 }
+
+interface CategoryFormState extends GeneralFormState {
+  errors?: {
+    name?: string;
+    slug?: string;
+  };
+}

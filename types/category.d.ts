@@ -1,6 +1,6 @@
 interface CategoryType {
   id: number;
-  name: string;
-  slug: string;
+  name: string | null;
+  slug: string | null;
   created_at?: string;
 }
