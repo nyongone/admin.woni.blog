@@ -36,7 +36,13 @@ const PostList = ({ posts }: Props) => {
           {posts.map((post) => (
             <tr className="border-b border-b-zinc-100" key={post.id}>
               <th scope="row" className="px-6 py-4 font-medium">
-                <Link href={`https://woni.blog/posts/${post.slug}`}>
+                <Link
+                  href={`https://woni.blog/posts/${post.slug}`}
+                  className="flex flex-row items-center justify-start gap-2"
+                >
+                  {post.isTemp && (
+                    <span className="text-sm text-zinc-300">임시저장</span>
+                  )}
                   {post.title}
                 </Link>
               </th>

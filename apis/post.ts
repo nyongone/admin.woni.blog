@@ -41,6 +41,7 @@ export async function createPost(postObject: PostType) {
     slug: (await isSlugExists(postObject.slug))
       ? `${postObject.slug}-${Math.random().toString(36).slice(2)}`
       : postObject.slug,
+    isTemp: postObject.isTemp,
   });
 }
 
@@ -74,6 +75,7 @@ export async function updatePost(
         postObject.slug && (await isSlugExists(postObject.slug))
           ? `${postObject.slug}-${Math.random().toString(36).slice(2)}`
           : postObject.slug,
+      isTemp: postObject.isTemp,
     })
     .eq("id", parseInt(postId, 10));
 }

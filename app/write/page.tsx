@@ -30,6 +30,7 @@ export default async function Page({
             name: data[0].category.name as string,
             slug: data[0].category.slug as string,
           },
+          isTemp: data[0].isTemp,
         }}
       />
     );

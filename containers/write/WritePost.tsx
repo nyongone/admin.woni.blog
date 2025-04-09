@@ -41,11 +41,25 @@ const WritePost = ({ categories, action = "write", initialPost }: Props) => {
         {action === "update" && (
           <input type="hidden" name="id" defaultValue={initialPost?.id} />
         )}
-        <SelectCategory
-          name="category"
-          categories={categories}
-          initialCategory={(initialPost?.category as CategoryType) ?? undefined}
-        />
+        <div className="flex w-full flex-col items-start justify-start gap-2">
+          <div className="flex flex-row items-center justify-start gap-1">
+            <input
+              type="checkbox"
+              name="isTemp"
+              defaultChecked={!!initialPost?.isTemp}
+            />
+            <label htmlFor="isTemp" className="text-sm text-zinc-500">
+              임시저장
+            </label>
+          </div>
+          <SelectCategory
+            name="category"
+            categories={categories}
+            initialCategory={
+              (initialPost?.category as CategoryType) ?? undefined
+            }
+          />
+        </div>
         <div className="w-full">
           <input
             name="title"
@@ -68,7 +82,7 @@ const WritePost = ({ categories, action = "write", initialPost }: Props) => {
           type="submit"
           className="bottom-0 h-12 w-full cursor-pointer rounded-sm bg-blue-400 text-sm font-bold text-white"
         >
-          작성
+          {action === "write" ? "작성" : "수정"}
         </button>
       </form>
       <div className="h-full w-full overflow-y-auto p-8 max-md:hidden">
