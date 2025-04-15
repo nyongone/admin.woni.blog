@@ -97,6 +97,28 @@ export default {
           iframe: {
             maxWidth: "100%",
           },
+          table: {
+            width: "100%",
+            height: "auto",
+            textAlign: "left",
+          },
+          th: {
+            padding: "0.75rem 0.5rem",
+            fontSize: "1rem",
+            backgroundColor: "var(--color-zinc-50)",
+            color: "var(--color-zinc-700)",
+          },
+          tr: {
+            borderBottom: "1px solid var(--color-zinc-100)",
+            "&:last-child": {
+              borderBottom: "none",
+            },
+          },
+          td: {
+            padding: "0.75rem 0.5rem",
+            fontSize: "1rem",
+            color: "var(--color-zinc-700)",
+          },
         },
       },
     },
