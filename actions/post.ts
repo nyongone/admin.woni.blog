@@ -14,7 +14,7 @@ export async function writePostAction(
     slug: slugger.slug(formData.get("title") as string),
     category: formData.get("category") as string,
     content: formData.get("content") as string,
-    isTemp: (formData.get("isTemp") as string) !== "true",
+    isTemp: !!formData.get("isTemp"),
   };
 
   if (!payload.title)

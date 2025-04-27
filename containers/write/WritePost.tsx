@@ -46,7 +46,7 @@ const WritePost = ({ categories, action = "write", initialPost }: Props) => {
             <input
               type="checkbox"
               name="isTemp"
-              defaultChecked={!!initialPost?.isTemp}
+              defaultChecked={initialPost?.isTemp || false}
             />
             <label htmlFor="isTemp" className="text-sm text-zinc-500">
               임시저장
